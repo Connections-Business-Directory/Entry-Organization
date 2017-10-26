@@ -177,7 +177,7 @@
 					'</select>' );
 
 				// console.log( value );
-				$('select#cn-organization').val( value ).chosen();
+				$('select#cn-organization').val( value ).chosen({ width: '100%' });
 
 				// Set style of label.
 				// $('label[for=cn-organization]').css({
