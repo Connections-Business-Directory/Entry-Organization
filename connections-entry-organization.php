@@ -427,10 +427,9 @@ if ( ! class_exists( 'Connections_Entry_Organization' ) ) :
 
 			add_action(
 				'admin_notices',
-				create_function(
-					'',
-					'echo \'<div id="message" class="error"><p><strong>ERROR:</strong> Connections must be installed and active in order use the Connections Entry Organization Extension.</p></div>\';'
-				)
+				function() {
+					echo '<div id="message" class="error"><p><strong>ERROR:</strong> Connections must be installed and active in order use the Connections Organization Individuals Extension.</p></div>';
+				}
 			);
 
 			return FALSE;
