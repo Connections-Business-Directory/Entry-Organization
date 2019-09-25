@@ -288,7 +288,6 @@ if ( ! class_exists( 'Connections_Entry_Organization' ) ) :
 			/** @var wpdb $wpdb */
 			global $wpdb;
 
-			$out = array();
 			$where[] = 'WHERE 1=1';
 
 			$defaults = array(
