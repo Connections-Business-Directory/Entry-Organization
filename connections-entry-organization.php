@@ -43,6 +43,34 @@ if ( ! class_exists( 'Connections_Entry_Organization' ) ) :
 		private static $instance;
 
 		/**
+		 * @var string The absolute path this this file.
+		 *
+		 * @since 1.1
+		 */
+		private static $file = '';
+
+		/**
+		 * @var string The URL to the plugin's folder.
+		 *
+		 * @since 1.1
+		 */
+		private static $url = '';
+
+		/**
+		 * @var string The absolute path to this plugin's folder.
+		 *
+		 * @since 1.1
+		 */
+		private static $path = '';
+
+		/**
+		 * @var string The basename of the plugin.
+		 *
+		 * @since 1.1
+		 */
+		private static $basename = '';
+
+		/**
 		 * A dummy constructor to prevent the class from being loaded more than once.
 		 *
 		 * @access public
@@ -63,7 +91,12 @@ if ( ! class_exists( 'Connections_Entry_Organization' ) ) :
 
 			if ( ! isset( self::$instance ) && ! ( self::$instance instanceof Connections_Entry_Organization ) ) {
 
-				self::$instance = new Connections_Entry_Organization;
+				self::$instance = $self = new self;
+
+				self::$file       = __FILE__;
+				self::$url        = plugin_dir_url( self::$file );
+				self::$path       = plugin_dir_path( self::$file );
+				self::$basename   = plugin_basename( self::$file );
 
 				self::hooks();
 			}
