@@ -99,6 +99,17 @@ if ( ! class_exists( 'Connections_Entry_Organization' ) ) :
 				self::$basename   = plugin_basename( self::$file );
 
 				self::hooks();
+
+				/**
+				 * This should run on the `plugins_loaded` action hook. Since the extension loads on the
+				 * `plugins_loaded` action hook, load immediately.
+				 */
+				cnText_Domain::register(
+					'connections-entry-organization',
+					self::$basename,
+					'load'
+				);
+
 			}
 
 			return self::$instance;
