@@ -2,22 +2,22 @@
 /**
  * An extension for the Connections Business Directory which limits the organizations to previously entered organization when adding an individual.
  *
- * @package   Connections Business Directory Entry Organization
+ * @package   Connections Business Directory Extension - Organization Individuals
  * @category  Extension
  * @author    Steven A. Zahm
  * @license   GPL-2.0+
- * @link      http://connections-pro.com
- * @copyright 2017 Steven A. Zahm
+ * @link      https://connections-pro.com
+ * @copyright 2019 Steven A. Zahm
  *
  * @wordpress-plugin
- * Plugin Name:       Connections Business Directory Entry Organization
- * Plugin URI:        http://connections-pro.com
+ * Plugin Name:       Connections Business Directory Extension - Organization Individuals
+ * Plugin URI:        https://connections-pro.com
  * Description:       An extension for the Connections Business Directory which limits the organizations to previously entered organization when adding an individual.
  * Version:           1.0
  * Author:            Steven A. Zahm
- * Author URI:        http://connections-pro.com
+ * Author URI:        https://connections-pro.com
  * License:           GPL-2.0+
- * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
+ * License URI:       https://www.gnu.org/licenses/gpl-2.0.txt
  * Text Domain:       connections-entry-organization
  * Domain Path:       /languages
  */
