@@ -314,11 +314,6 @@ if ( ! class_exists( 'Connections_Entry_Organization' ) ) :
 
 			$results = $wpdb->get_results( 'SELECT ' . $select . ' FROM ' . CN_ENTRY_TABLE . ' '  . implode( ' ', $where ) . ' ORDER BY `last_name`' );
 
-			//foreach ( $results as $row ) {
-			//
-			//	$out[ $row->id ] = $row->name;
-			//}
-
 			return $results;
 		}
 
