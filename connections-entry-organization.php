@@ -129,6 +129,13 @@ if ( ! class_exists( 'Connections_Entry_Organization' ) ) :
 
 			// Register the valid entry types.
 			add_filter( 'cn_metabox_publish_atts', array( __CLASS__, 'registerEntryTypes' ), 11 );
+
+			// Add the organization individuals option to the admin settings page.
+			// This is also required so it'll be rendered by $entry->getContentBlock( 'organization_individuals' ).
+			add_filter( 'cn_content_blocks', array( __CLASS__, 'settingsOption') );
+
+			// Add the action that'll be run when calling $entry->getContentBlock( 'organization_individuals' ) from within a template.
+			add_action( 'cn_entry_output_content-organization_individuals', array( __CLASS__, 'block' ), 10, 4 );
 		}
 
 		/**
@@ -406,6 +413,64 @@ if ( ! class_exists( 'Connections_Entry_Organization' ) ) :
 			}
 
 			return $html;
+		}
+
+		/**
+		 * Callback for the `cn_content_blocks` filter.
+		 *
+		 * Add the custom meta as an option in the content block settings in the admin.
+		 * This is required for the output to be rendered by $entry->getContentBlock().
+		 *
+		 * @since  1.1
+		 *
+		 * @param  array  $blocks An associative array containing the registered content block settings options.
+		 *
+		 * @return array
+		 */
+		public static function settingsOption( $blocks ) {
+
+			$blocks['organization_individuals'] = __( 'Organization Individuals', 'connections-entry-organization' );
+
+			return $blocks;
+		}
+
+		/**
+		 * Callback for the `cn_entry_output_content-organization_individuals` action.
+		 *
+		 * Renders the Organization Individuals content block.
+		 *
+		 * Called by the `cn_entry_output_content-organization_individuals` action in cnOutput->getMetaBlock().
+		 *
+		 * @since  1.1
+		 *
+		 * @param cnOutput   $entry The current entry.
+		 * @param array      $atts  The shortcode atts array passed from the calling action.
+		 * @param cnTemplate $template
+		 */
+		public static function block( $entry, $atts, $template ) {
+
+			self::displayBlock( $entry );
+		}
+
+		/**
+		 * @since 1.1
+		 *
+		 * @param cnOutput $organization
+		 */
+		private static function displayBlock( $organization ) {
+
+			if ( $relations = self::getEntriesByOrganization( $organization->getName( array(), 'db' ) ) ) {
+
+				foreach ( $relations as $relationData ) {
+
+					$entry = new cnOutput();
+
+					if ( $entry->set( $relationData->id ) ) {
+
+						include 'templates/card.php';
+					}
+				}
+			}
 		}
 	}
 
